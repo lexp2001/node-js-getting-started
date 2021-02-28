@@ -94,7 +94,7 @@ express()
       await client.query(`INSERT INTO rep_workers values ('${req.body.id}', '${req.body.name}', '${req.body.address}', '${req.body.category}', ${req.body.score}, '${req.body.cover_image}', ${req.body.lat}, ${req.body.long}, '${req.body.description}')`);
 
 
-      res.json({"id": eq.body.id});
+      res.json({"id": req.body.id});
       //res.json({"reqBody": req.body});
       client.release();
     } catch (err) {
