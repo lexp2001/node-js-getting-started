@@ -45,7 +45,7 @@ express()
   .get('/worker/:id', async (req, res) => {
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM rep_workers WHERE id = ' + req.params.id);
+      const result = await client.query("SELECT * FROM rep_workers WHERE id = '" + req.params.id +"'");
       const results = { 'results': (result) ? result.rows : null};
       //res.render('pages/db', results );
       res.json(results);
