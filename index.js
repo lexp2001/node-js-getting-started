@@ -80,7 +80,8 @@ express()
       client.release();
     } catch (err) {
       console.error(err);
-      res.send("Error " + err);
+      //res.send("Error " + err);
+      res.send({"Error ": err, "reqBody": req.body, "req": req});
     }
   })
   .get('/cool', (req, res) => res.send(cool()))
