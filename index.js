@@ -77,7 +77,7 @@ express()
       // const results = { 'results': (result) ? result.rows : null};
       //res.render('pages/db', results );
       //res.json(results);
-      res.json({"reqBody": req.body, "req": req});
+      res.json({"reqBody": req.body});
       //client.release();
     } catch (err) {
       // console.error(err);
