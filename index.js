@@ -55,7 +55,7 @@ express()
       res.send("Error " + err);
     }
   })
-  .get('/worker_by_cat/:cat', async (req, res) => {
+  .get('/workers-by-cat/:cat', async (req, res) => {
     try {
       const client = await pool.connect();
       const result = await client.query("SELECT * FROM rep_workers WHERE category = '" + req.params.cat +"'");
