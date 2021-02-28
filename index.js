@@ -68,5 +68,18 @@ express()
       res.send("Error " + err);
     }
   })
+  .post('/create-worker', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query(`INSERT INTO rep_workers values ('${req.body.id}', '${req.body.name}', '${req.body.address}', '${req.body.category}', ${req.body.score}, '${req.body.cover_image}', ${req.body.lat}, ${req.body.long}, '${req.body.description}'`);
+      const results = { 'results': (result) ? result.rows : null};
+      //res.render('pages/db', results );
+      res.json(results);
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
   .get('/cool', (req, res) => res.send(cool()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
