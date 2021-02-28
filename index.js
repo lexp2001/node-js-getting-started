@@ -70,7 +70,8 @@ express()
   })
   .post('/create-worker', async (req, res) => {
     try {
-      console.info(body);
+      console.info(req.body);
+      console.info(req);
       const client = await pool.connect();
       const result = await client.query(`INSERT INTO rep_workers values ('${req.body.id}', '${req.body.name}', '${req.body.address}', '${req.body.category}', ${req.body.score}, '${req.body.cover_image}', ${req.body.lat}, ${req.body.long}, '${req.body.description}'`);
       const results = { 'results': (result) ? result.rows : null};
