@@ -1,7 +1,14 @@
 const cool = require('cool-ascii-faces');
 const express = require('express')
+var bodyParser = require('body-parser')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+
+// create application/json parser
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -68,10 +75,10 @@ express()
       res.send("Error " + err);
     }
   })
-  .post('/create-worker', async (req, res) => {
+  .post('/create-worker', jsonParser, async (req, res) => {
     try {
       // console.info(req.body);
-      console.info(req);
+      // console.info(req);
       // const client = await pool.connect();
       // const result = await client.query(`INSERT INTO rep_workers values ('${req.body.id}', '${req.body.name}', '${req.body.address}', '${req.body.category}', ${req.body.score}, '${req.body.cover_image}', ${req.body.lat}, ${req.body.long}, '${req.body.description}'`);
       // const results = { 'results': (result) ? result.rows : null};
